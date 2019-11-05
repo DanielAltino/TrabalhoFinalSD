@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Registrar Incidente</string>
+    <string name="login">Login</string>
+    <string name="password">Senha</string>
+    <string name="sign_in">Logar</string>
+    <string name="description">Descrição</string>
+    <string name="send">Enviar</string>
+
+    <string-array name="arraySpinnerResposaveis">
+        <item>Setor 1</item>
+        <item>Setor 2</item>
+        <item>Setor 3</item>
+    </string-array>
+    
+
+</resources>

@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">Chamado Incidente Servidor</string>
+    <string name="description">Descrição</string>
+    <string name="name">Nome</string>
+    <string name="comoFoiResolvido">Como foi resolvido</string>
+
+
+    <string-array name="arraySpinner">
+        <item>Resolvido</item>
+        <item>Não Resolvido</item>
+    </string-array>
+
+    <string-array name="arraySpinnerSetor">
+        <item>Setor 1</item>
+        <item>Setor 2</item>
+        <item>Setor 3</item>
+    </string-array>
+
+
+    <string-array name="arrayList">
+        <item>Lista 1</item>
+        <item>Lista 2</item>
+        <item>Lista 3</item>
+    </string-array>
+
+</resources>

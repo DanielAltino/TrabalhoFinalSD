@@ -1,0 +1,93 @@
+{
+  "project_info": {
+    "project_number": "67036450170",
+    "firebase_url": "https://chamadoincidentesservidor.firebaseio.com",
+    "project_id": "chamadoincidentesservidor",
+    "storage_bucket": "chamadoincidentesservidor.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:67036450170:android:f2c8c537c8fd4a2d3c5ac3",
+        "android_client_info": {
+          "package_name": "com.example.chamadoincidentesservidor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "67036450170-mh7v67vtlvd7l1k1v5fg0initajpu4fv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.chamadoincidentesservidor",
+            "certificate_hash": "abbd0942873798ac52628c55dbdebe19f8b3e7db"
+          }
+        },
+        {
+          "client_id": "67036450170-iljoig1jemaplliulu4tc9foq8f5gt1p.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.chamadoincidentesservidor",
+            "certificate_hash": "675348a086f46296941fb839e3eccc531dc19e0e"
+          }
+        },
+        {
+          "client_id": "67036450170-glpdqr1dl7k8eirvkv2dcao1ru4d92qe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBDNlrMV0bNSMYV373m37bZ45G9e5iWjZQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "67036450170-glpdqr1dl7k8eirvkv2dcao1ru4d92qe.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:67036450170:android:499317150186ad7b3c5ac3",
+        "android_client_info": {
+          "package_name": "com.example.chamadosincidentescliente"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "67036450170-9nb34vj4gfkit1jsh174ar5dl5g3sk50.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.chamadosincidentescliente",
+            "certificate_hash": "abbd0942873798ac52628c55dbdebe19f8b3e7db"
+          }
+        },
+        {
+          "client_id": "67036450170-glpdqr1dl7k8eirvkv2dcao1ru4d92qe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBDNlrMV0bNSMYV373m37bZ45G9e5iWjZQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "67036450170-glpdqr1dl7k8eirvkv2dcao1ru4d92qe.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
