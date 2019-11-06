@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -21,7 +22,7 @@ import java.net.InetAddress;
 import java.net.MulticastSocket;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
-
+import java.util.Set;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -30,7 +31,10 @@ public class MainActivity extends AppCompatActivity {
     Spinner spinnerSetor;
     private ListView listView;
     String msgDecode = "xxx";
-
+    ArrayList<String> dados = new ArrayList<>();
+    String[] setores = {"Setor 1", "Setor 2", "Setor 3"};
+    String[] setoresIncidentes = {"Setor 1", "Setor 2", "Setor 3", "Setor 3", "Setor 2", "Setor 3"};
+    public ArrayAdapter adapterListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,28 +47,50 @@ public class MainActivity extends AppCompatActivity {
         init();
 
 
-        ArrayList<String> stringListView = preencherListView();
-
         ArrayAdapter adapter = ArrayAdapter.createFromResource(this, R.array.arraySpinnerSetor, android.R.layout.simple_dropdown_item_1line);
         spinnerSetor.setAdapter(adapter);
 
-        ArrayAdapter<String> adapterListView = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, stringListView);
-        listView.setAdapter(adapterListView);
+
+        spinnerSetor.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                if(parent.getItemAtPosition(position).equals("Setor 1")){
+                    adapterListView = ArrayAdapter.createFromResource(MainActivity.this,R.array.array_Setor_1, android.R.layout.simple_list_item_1);
+                    listView.setAdapter(adapterListView);
+                }
+                if(parent.getItemAtPosition(position).equals("Setor 2")){
+                    adapterListView = ArrayAdapter.createFromResource(MainActivity.this,R.array.array_Setor_2, android.R.layout.simple_list_item_1);
+                    listView.setAdapter(adapterListView);
+                }
+                if(parent.getItemAtPosition(position).equals("Setor 3")){
+                    adapterListView = ArrayAdapter.createFromResource(MainActivity.this,R.array.array_Setor_3, android.R.layout.simple_list_item_1);
+                    listView.setAdapter(adapterListView);
+                }
+
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
 
     }
     @Override
-    protected void onPause(){
+    protected void onPause() {
         super.onPause();
 
-       // startService(new Intent(getBaseContext(), TestService.class));
+        // startService(new Intent(getBaseContext(), TestService.class));
 
 
         //Toast.makeText(this, "Background", Toast.LENGTH_SHORT).show();
-        
+
     }
 
-    void init(){
+    void init() {
 
         spinnerSetor = findViewById(R.id.spinnerSetor);
         listView = findViewById(R.id.listView);
@@ -80,11 +106,10 @@ public class MainActivity extends AppCompatActivity {
         // get their responses!
         byte[] buf = new byte[1000];
         DatagramPacket recv = new DatagramPacket(buf, buf.length);
-        String msgDecode= null;
-        while(msgDecode==null)
-        {
+        String msgDecode = null;
+        while (msgDecode == null) {
             s.receive(recv);
-            msgDecode  = new String(buf, "UTF-8");
+            msgDecode = new String(buf, "UTF-8");
             Toast.makeText(this, msgDecode, Toast.LENGTH_SHORT).show();
             System.out.println("Address: " + msgDecode);
         }
@@ -97,22 +122,5 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private ArrayList<String> preencherListView(){
-        ArrayList<String> dados = new ArrayList<String>();
-        dados.add(msgDecode);
-        dados.add("Lista 2");
-        dados.add("Lista 3");
-        dados.add("Lista 4");
-        dados.add("Lista 5");
-        dados.add("Lista 5");
-        dados.add("Lista 5");
-        dados.add("Lista 5");
-        dados.add("Lista 5");
-        dados.add("Lista 5");
-        dados.add("Lista 5");
-        dados.add("Lista 5");
-
-        return dados;
-    }
 
 }
