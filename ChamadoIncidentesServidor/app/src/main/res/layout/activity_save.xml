@@ -21,8 +21,8 @@
 
     <EditText
         android:id="@+id/editTextComoFoiResolvido"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="323dp"
+        android:layout_height="155dp"
         android:background="@drawable/edit_text_rounded"
         android:ems="10"
         android:gravity="start|top"
@@ -34,18 +34,6 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView"
         app:layout_constraintVertical_bias="0.029" />
 
-    <ImageView
-        android:id="@+id/imageViewAnexo"
-        android:layout_width="258dp"
-        android:layout_height="218dp"
-        android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextComoFoiResolvido"
-        app:layout_constraintVertical_bias="0.038" />
-
     <Spinner
         android:id="@+id/spinnerSetor"
         android:layout_width="326dp"
@@ -56,8 +44,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewAnexo"
-        app:layout_constraintVertical_bias="0.083" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextComoFoiResolvido"
+        app:layout_constraintVertical_bias="0.112" />
 
     <Button
         android:id="@+id/buttonSalvar"

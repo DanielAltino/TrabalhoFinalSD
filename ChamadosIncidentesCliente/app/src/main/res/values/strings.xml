@@ -7,9 +7,9 @@
     <string name="send">Enviar</string>
 
     <string-array name="arraySpinnerResposaveis">
-        <item>Setor 1</item>
-        <item>Setor 2</item>
-        <item>Setor 3</item>
+        <item>Sala de aula</item>
+        <item>Laboratório</item>
+        <item>Lago</item>
     </string-array>
     
 

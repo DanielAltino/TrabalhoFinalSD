@@ -1,5 +1,6 @@
 package com.example.chamadoincidentesservidor;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -13,7 +14,12 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.io.IOException;
 import java.lang.reflect.Array;
@@ -32,9 +38,16 @@ public class MainActivity extends AppCompatActivity {
     private ListView listView;
     String msgDecode = "xxx";
     ArrayList<String> dados = new ArrayList<>();
-    String[] setores = {"Setor 1", "Setor 2", "Setor 3"};
-    String[] setoresIncidentes = {"Setor 1", "Setor 2", "Setor 3", "Setor 3", "Setor 2", "Setor 3"};
     public ArrayAdapter adapterListView;
+
+
+
+    private FirebaseDatabase firebaseDatabase;
+    private DatabaseReference databaseReference;
+    ArrayList<String> listSetores;
+
+    Setores setoresClass;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +57,10 @@ public class MainActivity extends AppCompatActivity {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
+        setoresClass = new Setores();
+
         init();
+        initFirebase();
 
 
         ArrayAdapter adapter = ArrayAdapter.createFromResource(this, R.array.arraySpinnerSetor, android.R.layout.simple_dropdown_item_1line);
@@ -55,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-                if(parent.getItemAtPosition(position).equals("Setor 1")){
+                /*if(parent.getItemAtPosition(position).equals("Setor 1")){
                     adapterListView = ArrayAdapter.createFromResource(MainActivity.this,R.array.array_Setor_1, android.R.layout.simple_list_item_1);
                     listView.setAdapter(adapterListView);
                 }
@@ -66,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
                 if(parent.getItemAtPosition(position).equals("Setor 3")){
                     adapterListView = ArrayAdapter.createFromResource(MainActivity.this,R.array.array_Setor_3, android.R.layout.simple_list_item_1);
                     listView.setAdapter(adapterListView);
-                }
+                }*/
 
 
             }
@@ -79,6 +95,37 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+    private void initFirebase() {
+
+        FirebaseApp.initializeApp(MainActivity.this);
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference("Incidentes");
+
+        listSetores = new ArrayList<>();
+
+        adapterListView = new ArrayAdapter<>(this, R.layout.activity_incident, R.id.textViewDescription, listSetores);
+
+
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+
+                    setoresClass = ds.getValue(Setores.class);
+                    listSetores.add(setoresClass.getSetor() + "\n\n" + setoresClass.getDescricao() + "\n\n" + setoresClass.getNome() + "\n\n" + setoresClass.getEmail());
+
+                }
+                listView.setAdapter(adapterListView);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
     @Override
     protected void onPause() {
         super.onPause();
@@ -94,6 +141,14 @@ public class MainActivity extends AppCompatActivity {
 
         spinnerSetor = findViewById(R.id.spinnerSetor);
         listView = findViewById(R.id.listView);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent it = new Intent(MainActivity.this, SaveActivity.class);
+                startActivity(it);
+            }
+        });
     }
 
 

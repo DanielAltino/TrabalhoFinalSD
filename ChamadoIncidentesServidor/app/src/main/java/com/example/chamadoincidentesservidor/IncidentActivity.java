@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.CharacterPickerDialog;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -34,8 +35,7 @@ public class IncidentActivity extends AppCompatActivity {
 
 
         textViewDescription = findViewById(R.id.textViewDescription);
-        textViewName = findViewById(R.id.textViewName);
-        buttonFecharChamado = findViewById(R.id.button_FecharChamado);
+
 
     }
 

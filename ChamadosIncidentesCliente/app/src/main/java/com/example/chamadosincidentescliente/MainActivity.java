@@ -86,6 +86,8 @@ public class MainActivity extends AppCompatActivity {
 
     Bitmap image;
 
+    long IDBanco;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -127,22 +129,9 @@ public class MainActivity extends AppCompatActivity {
                 requisicao.setDescricao(editTextDescription.getText().toString());
                // requisicao.setFoto(ImagePath.toString());
                 //databaseReference.child("ID001").setValue(requisicao);
+                databaseReference.child(String.valueOf(IDBanco)).setValue(requisicao);
 
-                databaseReference.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                        databaseReference.child("USER01").setValue(requisicao);
-
-                        //Toast.makeText(MainActivity.this, "Dados inceridos", Toast.LENGTH_SHORT).show();
-
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                });
 
                 try {
                     sendGroup();
@@ -231,7 +220,25 @@ public class MainActivity extends AppCompatActivity {
     private void inicializarBD() {
         firebaseDatabase = FirebaseDatabase.getInstance();
         //FirebaseDatabase.getInstance().setPersistenceEnabled(true);
-        databaseReference = firebaseDatabase.getReference("Ïncidentes");
+        databaseReference = firebaseDatabase.getReference().child("Incidentes");
+
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+
+                IDBanco = dataSnapshot.getChildrenCount();
+                //databaseReference.child(String.valueOf(IDBanco)).setValue(requisicao);
+
+                //Toast.makeText(MainActivity.this, "Dados inceridos", Toast.LENGTH_SHORT).show();
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
 
 
